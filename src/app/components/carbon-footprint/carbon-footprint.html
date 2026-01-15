@@ -5,20 +5,20 @@
 <section>
   <article>
     <p>Consommation pour 100 km : <span
-      [ngClass]="{'red' : consumptionPer100 > MAX_CONSUMPTION, 'green' : consumptionPer100 < MIN_CONSUMPTION}">{{ consumptionPer100  | number : "1.2-2" }}</span>
+      [ngClass]="{'red' : resumeTravels().consumptionPer100 > MAX_CONSUMPTION, 'green' : resumeTravels().consumptionPer100 < MIN_CONSUMPTION}">{{ resumeTravels().consumptionPer100  | number : "1.2-2" }}</span>
     </p>
-    @if (consumptionPer100 > MAX_CONSUMPTION) {
+    @if (resumeTravels().consumptionPer100 > MAX_CONSUMPTION) {
       <p>Attention votre consommation est élevée</p>
     }
-    @if (consumptionPer100 < MIN_CONSUMPTION) {
+    @if (resumeTravels().consumptionPer100 < MIN_CONSUMPTION) {
       <p>Bravo ! Votre consommation est faible !</p>
     }
     <p>Nombre de km : <span
-      [ngClass]="{'low-distance' : distance <= 100, 'high-distance' : distance > 500}">{{ distance }}</span></p>
-    <p>Consommation totale : {{ distance * consumptionPer100 / 100  | number : "1.2-2"  }}</p>
+      [ngClass]="{'low-distance' : resumeTravels().distance <= 100, 'high-distance' : resumeTravels().distance > 500}">{{ resumeTravels().distance }}</span></p>
+    <p>Consommation totale : {{ resumeTravels().distance * resumeTravels().consumptionPer100 / 100  | number : "1.2-2"  }}</p>
 
 
-    <p>Quantité CO2 : {{ quantityCo2  | number : "1.2-2"  }}</p>
+    <p>Quantité CO2 : {{ resumeTravels().quantityCo2  | number : "1.2-2"  }}</p>
 
     <button (click)="add100km()">+100km</button>
   </article>
@@ -38,7 +38,7 @@
       </tr>
       </thead>
       <tbody>
-        @for (travel of travels; track $index) {
+        @for (travel of travels(); track $index) {
           <tr>
             <td>{{ travel.distance }} km</td>
             <td>{{ travel.consumptionPer100 }} L</td>

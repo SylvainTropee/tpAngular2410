@@ -22,41 +22,45 @@ export class CarbonFootprint {
   public readonly MAX_CONSUMPTION: number = 7;
   public readonly MIN_CONSUMPTION: number = 4;
 
-  public distance: number;
-  public consumptionPer100: number;
-  public quantityCo2: number;
+  // public distance: number;
+  // public consumptionPer100: number;
+  // public quantityCo2: number;
 
-  public travels: { distance: number, consumptionPer100: number, quantityCo2: number }[];// Array<{distance : number, consumptionPer100 : number}>
+  public resumeTravels;
+
+  public travels;// Array<{distance : number, consumptionPer100 : number}>
 
   constructor(private cfc: CarbonFootprintCompute) {
-    this.distance = 0;
-    this.consumptionPer100 = 0;
-    this.quantityCo2 = 0;
+    // this.distance = 0;
+    // this.consumptionPer100 = 0;
+    // this.quantityCo2 = 0;
 
-    this.travels = this.cfc.getTravels();
-    this.calculateDistanceAndConsumptionAverage()
+    this.travels = this.cfc.travels;
+    this.resumeTravels = this.cfc.resumeTravels
+
+    this.cfc.getTravels()
+    //this.calculateDistanceAndConsumptionAverage()
   }
 
   add100km() {
-    this.distance += 100;
+    //this.distance += 100;
   }
 
   addTravel() {
     const distance = Math.round(Math.random() * 1000);
     const consumption = Math.round(Math.random() * 10);
-    const quantityCo2 = this.cfc.getQuantityCo2ByTravel(distance, consumption, 'car');
-    this.cfc.addTravel({distance: distance, consumptionPer100: consumption, quantityCo2: quantityCo2});
-    this.calculateDistanceAndConsumptionAverage()
+    this.cfc.addTravel({distance: distance, consumptionPer100: consumption, travelType : 'car'});
+    //this.calculateDistanceAndConsumptionAverage()
   }
 
-  private calculateDistanceAndConsumptionAverage() {
-
-    let result = this.cfc.getResumeTravels()
-
-    this.distance = result.totalDistance;
-    this.consumptionPer100 = result.consumptionPer100;
-    this.quantityCo2 = result.quantityCo2
-  }
+  // private calculateDistanceAndConsumptionAverage() {
+  //
+  //   let result = this.cfc.getResumeTravels()
+  //
+  //   this.distance = result.totalDistance;
+  //   this.consumptionPer100 = result.consumptionPer100;
+  //   this.quantityCo2 = result.quantityCo2
+  // }
 
 
 }
