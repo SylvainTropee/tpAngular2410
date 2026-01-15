@@ -22,15 +22,16 @@
   }
 
 
-
-  <label for="consumption">Consommation</label>
-  <input type="number" name="consumption" id="consumption" formControlName="consumption">
-  @if (travelForm.get('consumption')?.dirty || travelForm.get('consumption')?.touched) {
-    @if (travelForm.get('consumption')?.hasError('min')) {
-      <div class="error">La consommation doit être positive !</div>
-    }
-    @if (travelForm.get('consumption')?.hasError('required')) {
-      <div class="error">La consommation est obligatoire !</div>
+  @if (travelForm.get('travelType')?.value == 'car') {
+    <label for="consumption">Consommation</label>
+    <input type="number" name="consumption" id="consumption" formControlName="consumption">
+    @if (travelForm.get('consumption')?.dirty || travelForm.get('consumption')?.touched) {
+      @if (travelForm.get('consumption')?.hasError('min')) {
+        <div class="error">La consommation doit être positive !</div>
+      }
+      @if (travelForm.get('consumption')?.hasError('required')) {
+        <div class="error">La consommation est obligatoire !</div>
+      }
     }
   }
 

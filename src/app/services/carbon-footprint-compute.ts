@@ -26,8 +26,15 @@ export class CarbonFootprintCompute {
     this.travels.push(travel);
   }
 
-  getQuantityCo2ByTravel(distance: number, consumptionPer100: number) {
-    return distance * consumptionPer100 / 100 * 2.3
+  getQuantityCo2ByTravel(distance: number, consumptionPer100: number, travelType : string) {
+    switch (travelType){
+      case 'train':
+        return distance * 0.03
+      case 'plane':
+        return distance * 0.2
+      default :
+        return distance * consumptionPer100 / 100 * 2.3
+    }
   }
 
   getResumeTravels() {

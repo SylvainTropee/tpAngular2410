@@ -34,6 +34,7 @@
       <tr>
         <th>Distance</th>
         <th>Consommation pour 100 kms</th>
+        <th>Co2</th>
       </tr>
       </thead>
       <tbody>
@@ -41,11 +42,13 @@
           <tr>
             <td>{{ travel.distance }} km</td>
             <td>{{ travel.consumptionPer100 }} L</td>
+            <td>{{ travel.quantityCo2 | number : ".2-2"}} L</td>
           </tr>
         } @empty {
           <tr>
             <td>No distance !</td>
             <td>No consumption !</td>
+            <td>No Co2 !</td>
           </tr>
         }
       </tbody>
