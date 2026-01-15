@@ -119,7 +119,7 @@ export class CarbonFootprintCompute {
 
     return {
       distance: totalDistance,
-      consumptionPer100: totalConsumption / this.travels.length,
+      consumptionPer100: totalConsumption / this._travels().length,
       quantityCo2: totaleCo2
     }
 
